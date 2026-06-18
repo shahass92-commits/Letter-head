@@ -1,0 +1,6 @@
+{
+  "name": "Compass Appointment Letter Generator",
+  "description": "Premium Blue and Gold digital creator and email-compatible HTML designer for official corporate appointment and joining letters.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
