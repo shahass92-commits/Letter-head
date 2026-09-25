@@ -134,7 +134,16 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
     .join('');
 
   // Minimal blue band shared by header and footer (solid fallback for clients without gradient support)
-  const bandStyle = "background-color: #0b4fb3; background-image: linear-gradient(135deg, #0a3d8f 0%, #1a6be0 100%);";
+  const bandStyle = "background-color: #1f6fd8; background-image: linear-gradient(135deg, #1558c4 0%, #2f86f0 100%);";
+
+  // Footer contact lists (comma-separated in the editor)
+  const splitList = (v: string) => v.split(',').map(x => x.trim()).filter(Boolean);
+  const linkStyle = "color: #ffffff; text-decoration: none;";
+  const footerDot = '<span style="color: #a9c8ff;">&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>';
+  const emailLinks = splitList(data.footerEmail)
+    .map(e => `<a href="mailto:${e}" style="${linkStyle}">${e}</a>`).join(footerDot);
+  const websiteLinks = splitList(data.footerWebsite)
+    .map(w => `<a href="https://${w.replace(/^https?:\/\//, '')}" target="_blank" style="${linkStyle}">${w}</a>`).join(footerDot);
   const appleFont = "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif";
   // Pre-calculate terms template with theme specific variables
   const termsRows = data.terms.map(term => `
@@ -191,11 +200,19 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
           
           <!-- CORPORATE IDENTITY BANNER -->
           <tr>
-            <td style="${bandStyle} padding: 22px 28px; box-shadow: 0 4px 14px rgba(10, 61, 143, 0.25);" class="mobile-padding">
-              <h1 style="margin: 0 0 4px 0; font-family: ${appleFont}; font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: 0.4px; line-height: 1.2;">
+            <td style="${bandStyle} padding: 34px 36px 30px 36px; border-bottom: 3px solid #8cc0ff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18), 0 6px 18px rgba(21, 88, 196, 0.22);" class="mobile-padding">
+              <h1 style="margin: 0; font-family: ${appleFont}; font-size: 25px; font-weight: 700; color: #ffffff; letter-spacing: 3px; text-transform: uppercase; line-height: 1.25;">
                 ${data.companyName}
               </h1>
-              <p style="margin: 0; font-family: ${appleFont}; font-size: 12px; font-weight: 500; color: #d6e4ff; letter-spacing: 0.3px;">
+              <table border="0" cellpadding="0" cellspacing="0" style="margin: 12px 0 10px 0;">
+                <tr>
+                  <td width="44" height="2" style="background-color: rgba(255, 255, 255, 0.55); line-height: 2px; font-size: 2px;">&nbsp;</td>
+                </tr>
+              </table>
+              <p style="margin: 0 0 6px 0; font-family: ${appleFont}; font-size: 12px; font-weight: 600; color: #e3eeff; letter-spacing: 5px; text-transform: uppercase;">
+                ${data.companyTagline}
+              </p>
+              <p style="margin: 0; font-family: ${appleFont}; font-size: 12px; font-weight: 400; color: #cfe0ff; letter-spacing: 1px;">
                 ${data.companyAddress}
               </p>
             </td>
@@ -356,8 +373,8 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
                     <!-- Call To Action Button -->
                     <table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto 10px auto;">
                       <tr>
-                        <td align="center" style="background-color: #0071e3; border-radius: 980px; box-shadow: 0 4px 14px rgba(0, 113, 227, 0.3);" bgcolor="#0071e3">
-                          <a href="${data.acceptOfferUrl}" target="_blank" class="btn-responsive" style="display: inline-block; box-sizing: border-box; padding: 12px 28px; font-family: ${appleFont}; font-size: 15px; font-weight: 600; color: #ffffff; text-decoration: none; letter-spacing: -0.1px; border-radius: 980px;">
+                        <td align="center" style="background-color: #2f8cff; background-image: linear-gradient(180deg, #4a9dff 0%, #2a86f5 100%); border-radius: 980px; box-shadow: 0 6px 16px rgba(47, 140, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25);" bgcolor="#2f8cff">
+                          <a href="${data.acceptOfferUrl}" target="_blank" class="btn-responsive" style="display: inline-block; box-sizing: border-box; padding: 13px 32px; font-family: ${appleFont}; font-size: 15px; font-weight: 600; color: #ffffff; text-decoration: none; letter-spacing: 0.2px; border-radius: 980px;">
                             ${data.acceptBtnText} &rsaquo;
                           </a>
                         </td>
@@ -467,11 +484,12 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
 
           <!-- CONTACT FOOTER -->
           <tr>
-            <td style="${bandStyle} padding: 14px 24px; text-align: center; box-shadow: 0 -4px 14px rgba(10, 61, 143, 0.2);" align="center" class="mobile-padding">
-              <p style="margin: 0; font-family: ${appleFont}; font-size: 12px; font-weight: 500; color: #d6e4ff; letter-spacing: 0.2px;">
-                <a href="mailto:${data.footerEmail}" style="color: #ffffff; text-decoration: none;">${data.footerEmail}</a>
-                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                <a href="https://${data.footerWebsite.replace(/^https?:\/\//, '')}" target="_blank" style="color: #ffffff; text-decoration: none;">${data.footerWebsite}</a>
+            <td style="${bandStyle} padding: 18px 24px; text-align: center; border-top: 3px solid #8cc0ff;" align="center" class="mobile-padding">
+              <p style="margin: 0 0 6px 0; font-family: ${appleFont}; font-size: 12px; font-weight: 500; color: #ffffff; letter-spacing: 0.4px;">
+                ${emailLinks}
+              </p>
+              <p style="margin: 0; font-family: ${appleFont}; font-size: 12px; font-weight: 500; color: #ffffff; letter-spacing: 0.4px;">
+                ${websiteLinks}
               </p>
             </td>
           </tr>
