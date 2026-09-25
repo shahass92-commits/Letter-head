@@ -308,8 +308,8 @@ export default function App() {
             onClick={handleCopy}
             className={`flex-1 md:flex-initial flex items-center justify-center gap-2 text-xs font-bold px-4 py-2.5 rounded-lg transition-transform active:scale-95 duration-200 ${
               copied 
-                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/20' 
-                : 'bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-lg shadow-amber-500/10'
+                ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20' 
+                : 'bg-amber-400 hover:bg-amber-300 text-slate-900 shadow-lg shadow-amber-500/10'
             }`}
             id="btn-copy-template"
           >
@@ -329,7 +329,7 @@ export default function App() {
           <button
             type="button"
             onClick={handleDownload}
-            className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold px-3 py-2.5 rounded-lg border border-slate-700 transition"
+            className="flex items-center justify-center gap-2 bg-slate-600 hover:bg-slate-500 text-white text-xs font-semibold px-3 py-2.5 rounded-lg border border-slate-500 transition"
             id="btn-download-raw"
             title="Download fully compileable standalone .html file"
           >
@@ -364,7 +364,7 @@ export default function App() {
                   className={`text-left text-xs p-2.5 rounded-lg border transition duration-150 ${
                     data.recipientName === preset.recipient 
                       ? 'bg-amber-500/10 border-amber-500/50 text-amber-200' 
-                      : 'bg-slate-950/80 border-slate-800 hover:border-slate-700 text-slate-300'
+                      : 'bg-slate-700/80 border-slate-600 hover:border-slate-400 text-slate-100'
                   }`}
                   id={`preset-${idx}`}
                 >
@@ -389,8 +389,8 @@ export default function App() {
                 onClick={() => setThemeVariant('midnight-gold')}
                 className={`p-2 rounded-lg border text-center transition-all ${
                   themeVariant === 'midnight-gold'
-                    ? 'bg-slate-900 border-amber-500 text-amber-300 shadow-md ring-1 ring-amber-500/30'
-                    : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400'
+                    ? 'bg-slate-600 border-amber-500 text-amber-300 shadow-md ring-1 ring-amber-500/30'
+                    : 'bg-slate-700 border-slate-600 hover:border-slate-400 text-slate-200'
                 }`}
                 id="btn-theme-midnight"
               >
@@ -403,8 +403,8 @@ export default function App() {
                 onClick={() => setThemeVariant('royal-navy')}
                 className={`p-2 rounded-lg border text-center transition-all ${
                   themeVariant === 'royal-navy'
-                    ? 'bg-slate-900 border-indigo-400 text-indigo-200 shadow-md ring-1 ring-indigo-400/30'
-                    : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400'
+                    ? 'bg-slate-600 border-indigo-400 text-indigo-200 shadow-md ring-1 ring-indigo-400/30'
+                    : 'bg-slate-700 border-slate-600 hover:border-slate-400 text-slate-200'
                 }`}
                 id="btn-theme-royal"
               >
@@ -417,8 +417,8 @@ export default function App() {
                 onClick={() => setThemeVariant('classic-indigo')}
                 className={`p-2 rounded-lg border text-center transition-all ${
                   themeVariant === 'classic-indigo'
-                    ? 'bg-slate-900 border-blue-500 text-blue-300 shadow-md ring-1 ring-blue-500/30'
-                    : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400'
+                    ? 'bg-slate-600 border-blue-500 text-blue-300 shadow-md ring-1 ring-blue-500/30'
+                    : 'bg-slate-700 border-slate-600 hover:border-slate-400 text-slate-200'
                 }`}
                 id="btn-theme-indigo"
               >
@@ -431,8 +431,8 @@ export default function App() {
                 onClick={() => setThemeVariant('emperor-blue')}
                 className={`p-2 rounded-lg border text-center transition-all ${
                   themeVariant === 'emperor-blue'
-                    ? 'bg-slate-900 border-yellow-600 text-yellow-300 shadow-md ring-1 ring-yellow-600/30'
-                    : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400'
+                    ? 'bg-slate-600 border-yellow-600 text-yellow-300 shadow-md ring-1 ring-yellow-600/30'
+                    : 'bg-slate-700 border-slate-600 hover:border-slate-400 text-slate-200'
                 }`}
                 id="btn-theme-emperor"
               >
@@ -445,8 +445,8 @@ export default function App() {
                 onClick={() => setThemeVariant('sophisticated-dark')}
                 className={`p-2 rounded-lg border text-center transition-all col-span-2 md:col-span-1 ${
                   themeVariant === 'sophisticated-dark'
-                    ? 'bg-slate-900 border-yellow-500 text-yellow-500 shadow-md ring-1 ring-yellow-500/30'
-                    : 'bg-slate-950 border-slate-800 hover:border-slate-700 text-slate-400'
+                    ? 'bg-slate-600 border-yellow-500 text-yellow-500 shadow-md ring-1 ring-yellow-500/30'
+                    : 'bg-slate-700 border-slate-600 hover:border-slate-400 text-slate-200'
                 }`}
                 id="btn-theme-sophisticated"
               >
@@ -461,7 +461,7 @@ export default function App() {
             <button
               onClick={() => setActiveTab('edit')}
               className={`flex-1 pb-2 text-[11px] font-bold uppercase tracking-wider relative transition-colors ${
-                activeTab === 'edit' ? 'text-amber-400' : 'text-slate-500 hover:text-slate-300'
+                activeTab === 'edit' ? 'text-amber-400' : 'text-slate-300 hover:text-white'
               }`}
               id="tab-edit"
             >
@@ -471,7 +471,7 @@ export default function App() {
             <button
               onClick={() => setActiveTab('terms')}
               className={`flex-1 pb-2 text-[11px] font-bold uppercase tracking-wider relative transition-colors ${
-                activeTab === 'terms' ? 'text-amber-400' : 'text-slate-500 hover:text-slate-300'
+                activeTab === 'terms' ? 'text-amber-400' : 'text-slate-300 hover:text-white'
               }`}
               id="tab-terms"
             >
@@ -481,7 +481,7 @@ export default function App() {
             <button
               onClick={() => setActiveTab('signatures')}
               className={`flex-1 pb-2 text-[11px] font-bold uppercase tracking-wider relative transition-colors ${
-                activeTab === 'signatures' ? 'text-amber-400' : 'text-slate-500 hover:text-slate-300'
+                activeTab === 'signatures' ? 'text-amber-400' : 'text-slate-300 hover:text-white'
               }`}
               id="tab-signatures"
             >
@@ -491,7 +491,7 @@ export default function App() {
             <button
               onClick={() => setActiveTab('acceptance')}
               className={`flex-1 pb-2 text-[11px] font-bold uppercase tracking-wider relative transition-colors ${
-                activeTab === 'acceptance' ? 'text-amber-400' : 'text-slate-500 hover:text-slate-300'
+                activeTab === 'acceptance' ? 'text-amber-400' : 'text-slate-300 hover:text-white'
               }`}
               id="tab-acceptance"
             >
@@ -501,7 +501,7 @@ export default function App() {
             <button
               onClick={() => setActiveTab('forms')}
               className={`flex-1 pb-2 text-[11px] font-bold uppercase tracking-wider relative transition-colors ${
-                activeTab === 'forms' ? 'text-amber-400' : 'text-slate-500 hover:text-slate-300'
+                activeTab === 'forms' ? 'text-amber-400' : 'text-slate-300 hover:text-white'
               }`}
               id="tab-forms"
             >
@@ -810,7 +810,7 @@ export default function App() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs font-bold transition flex items-center justify-center gap-1 border border-slate-700"
+                  className="w-full py-1.5 bg-slate-600 hover:bg-slate-500 text-slate-200 rounded text-xs font-bold transition flex items-center justify-center gap-1 border border-slate-500"
                   id="btn-add-clause"
                 >
                   <Plus className="w-3.5 h-3.5 text-amber-400" />
@@ -836,7 +836,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => handleRemoveTerm(term.id)}
-                        className="text-slate-500 hover:text-rose-400 p-1 rounded hover:bg-slate-800 transition self-center"
+                        className="text-slate-300 hover:text-rose-400 p-1 rounded hover:bg-slate-600 transition self-center"
                         title="Remove clause"
                         id={`btn-remove-clause-${term.id}`}
                       >
@@ -969,7 +969,7 @@ export default function App() {
                       onClick={() => {
                         alert("Simulated Secure Link Action!\n\nThis would normally redirect " + data.recipientName + " to:\n" + data.acceptOfferUrl);
                       }}
-                      className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs py-1.5 px-3 rounded-lg transition active:scale-95 flex items-center justify-center gap-1.5"
+                      className="w-full bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold text-xs py-1.5 px-3 rounded-lg transition active:scale-95 flex items-center justify-center gap-1.5"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       Test candidate portal
@@ -1028,7 +1028,7 @@ export default function App() {
                   type="button"
                   onClick={() => setPreviewMode('desktop')}
                   className={`px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 transition ${
-                    previewMode === 'desktop' ? 'bg-amber-500 text-slate-950' : 'text-slate-400 hover:text-slate-200'
+                    previewMode === 'desktop' ? 'bg-amber-400 text-slate-900' : 'text-slate-200 hover:text-white'
                   }`}
                   title="Desktop 680px Standard view"
                 >
@@ -1039,7 +1039,7 @@ export default function App() {
                   type="button"
                   onClick={() => setPreviewMode('mobile')}
                   className={`px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 transition ${
-                    previewMode === 'mobile' ? 'bg-amber-500 text-slate-950' : 'text-slate-400 hover:text-slate-200'
+                    previewMode === 'mobile' ? 'bg-amber-400 text-slate-900' : 'text-slate-200 hover:text-white'
                   }`}
                   title="Mobile standard 415px layout wrapper"
                 >
@@ -1054,7 +1054,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={handleTriggerPrint}
-                className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 border border-slate-700"
+                className="bg-slate-600 hover:bg-slate-500 text-slate-200 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 border border-slate-500"
                 id="btn-print"
               >
                 <Printer className="w-3.5 h-3.5 text-amber-400" />
@@ -1067,7 +1067,7 @@ export default function App() {
                 className={`text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition ${
                   showCode 
                     ? 'bg-amber-500/10 border border-amber-500 text-amber-300' 
-                    : 'bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200'
+                    : 'bg-slate-600 hover:bg-slate-500 border border-slate-500 text-slate-200'
                 }`}
                 id="btn-inspect-code"
               >
@@ -1097,7 +1097,7 @@ export default function App() {
               className={`text-xs font-bold px-3 py-1.5 rounded-lg transition-all duration-300 active:scale-95 flex items-center gap-1.5 border ${
                 emailSentSimulated
                   ? 'bg-emerald-600/10 border-emerald-500/30 text-emerald-300 cursor-not-allowed'
-                  : 'bg-indigo-600 hover:bg-indigo-500 text-white border-indigo-500/50 shadow-md shadow-indigo-500/10'
+                  : 'bg-indigo-500 hover:bg-indigo-400 text-white border-indigo-500/50 shadow-md shadow-indigo-500/10'
               }`}
             >
               {emailSentSimulated ? (
