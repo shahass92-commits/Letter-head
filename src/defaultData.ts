@@ -2,7 +2,7 @@ import { AppointmentLetterData } from './types';
 
 export const initialLetterData: AppointmentLetterData = {
   companyName: "COMPASS TRAVEL & TRANSPORTATION",
-  companySubName: "Professional Mobility Solutions • Corporate Transit Services",
+  companyAddress: "Trivandrum, India",
   letterTitle: "OFFICIAL APPOINTMENT & JOINING LETTER",
   docRef: "CTT/APPT/FLEET/2026/001",
   issueDate: "17 June 2026",
@@ -68,21 +68,18 @@ export const initialLetterData: AppointmentLetterData = {
   senderRole: "Proprietor",
   senderCompany: "Compass Travel & Transportation",
   senderDate: "17 June 2026",
-  senderSignatureUrl: "", // Start empty
   
   acceptanceChecklist: "I, Muhammad Ibrahim, hereby acknowledge and accept my appointment as IQ Developer & Trainer (IQDT) with Compass Travel & Transportation and agree to comply with all terms, conditions, operational guidelines, and organizational policies outlined in this document.",
-  employeeSignatureUrl: "", // Start empty
   employeeName: "Muhammad Ibrahim",
   employeeDate: "17/06/2026",
   employeePlace: "Thiruvananthapuram",
   
-  footerTagline: "Professional Mobility Solutions • Employee Transportation • Corporate Transit Services",
-  footerSlogan: "“Driven by Safety. Powered by Service Excellence.”",
-  footerDocStatus: "Official Appointment & Joining Confirmation Letter",
+  footerEmail: "navigation@compassnai.com",
+  footerWebsite: "www.compassnai.com",
 
   // Accept Offer Config
   showAcceptButton: true,
   acceptOfferUrl: "https://compass-travels.in/portal/acceptOffer?ref=CTT-APPT-FLEET-2026-001",
-  acceptBtnText: "ACCEPT APPOINTMENT & JOINING",
+  acceptBtnText: "Accept Appointment",
   acceptInstructions: "To accept this selection officially, please click the secure button above to log into our internal HR system. Verify your basic information and attach high-resolution copies of your valid driving license. Alternatively, you may sign and return this official document via response mail directly to registration@compasstravels.in."
 };

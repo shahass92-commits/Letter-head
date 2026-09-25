@@ -1,6 +1,6 @@
 export interface AppointmentLetterData {
   companyName: string;
-  companySubName: string;
+  companyAddress: string; // "Trivandrum, India"
   letterTitle: string;
   docRef: string;
   issueDate: string;
@@ -45,19 +45,16 @@ export interface AppointmentLetterData {
   senderRole: string; // "Proprietor"
   senderCompany: string; // "Compass Travel & Transportation"
   senderDate: string; // "17 June 2026"
-  senderSignatureUrl: string; // base64 or empty string
   
   // Employee Acceptance
   acceptanceChecklist: string;
-  employeeSignatureUrl: string; // base64 or empty string
   employeeName: string; // "Muhammad Ibrahim"
   employeeDate: string; // "17/06/2026"
   employeePlace: string; // "Thiruvananthapuram"
   
-  // Footer text
-  footerTagline: string;
-  footerSlogan: string;
-  footerDocStatus: string;
+  // Footer contact
+  footerEmail: string;
+  footerWebsite: string;
 
   // Accept Offer Config
   showAcceptButton: boolean;

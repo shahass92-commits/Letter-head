@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { initialLetterData } from './defaultData';
 import { AppointmentLetterData, ThemeVariant } from './types';
 import { generateMailBodyHtml } from './utils/htmlGenerator';
-import SignaturePad from './components/SignaturePad';
 import { 
   Copy, 
   Check, 
@@ -486,7 +485,7 @@ export default function App() {
               }`}
               id="tab-signatures"
             >
-              Signatures
+              Sign-off
               {activeTab === 'signatures' && <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-400" />}
             </button>
             <button
@@ -560,14 +559,14 @@ export default function App() {
                 </div>
                 <div>
                   <label className="text-[10px] uppercase font-mono tracking-wider font-bold text-slate-400 block mb-1">
-                    Banner Tagline
+                    Header Address
                   </label>
                   <input
                     type="text"
-                    value={data.companySubName}
-                    onChange={(e) => updateField('companySubName', e.target.value)}
+                    value={data.companyAddress}
+                    onChange={(e) => updateField('companyAddress', e.target.value)}
                     className="w-full bg-slate-900 border border-slate-800 text-slate-400 rounded-lg py-1.5 px-3 text-xs focus:outline-none"
-                    id="input-companySubName"
+                    id="input-companyAddress"
                   />
                 </div>
               </div>
@@ -841,44 +840,10 @@ export default function App() {
             </div>
           )}
 
-          {/* TAB 3: SIGNATURES PAD TAB */}
+          {/* TAB 3: SIGN-OFF DATES & PLACE */}
           {activeTab === 'signatures' && (
             <div className="space-y-5 animate-fadeIn" id="signatures-pad-pane">
               
-              <div className="bg-slate-900 p-3 rounded-lg border border-slate-800">
-                <span className="text-[11px] font-bold text-slate-200 block mb-0.5">Dual-Signature Capture Panel</span>
-                <p className="text-[10px] text-slate-400 leading-normal">
-                  Draw signatures using your mouse or touchscreen to instantly sign the official copies. Signature base64 maps directly into the email-ready HTML container!
-                </p>
-              </div>
-
-              {/* Employer signature */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-slate-400 uppercase tracking-widest text-[9px]">Handover Executive Signature</span>
-                  <span className="text-slate-400 font-medium">Shahas S ({data.senderRole})</span>
-                </div>
-                <SignaturePad
-                  placeholderText="Shahas S Signature Pad"
-                  savedImageUrl={data.senderSignatureUrl}
-                  onSave={(base64) => updateField('senderSignatureUrl', base64)}
-                  onClear={() => updateField('senderSignatureUrl', '')}
-                />
-              </div>
-
-              {/* Employee acceptance signature */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-slate-400 uppercase tracking-widest text-[9px]">Employee Aceptación Signature</span>
-                  <span className="text-slate-300 font-bold">{data.recipientName}</span>
-                </div>
-                <SignaturePad
-                  placeholderText="Muhammad Ibrahim Signature Pad"
-                  savedImageUrl={data.employeeSignatureUrl}
-                  onSave={(base64) => updateField('employeeSignatureUrl', base64)}
-                  onClear={() => updateField('employeeSignatureUrl', '')}
-                />
-              </div>
 
               <div className="space-y-3 bg-slate-900/40 p-3 rounded-lg border border-slate-800/80">
                 <span className="text-[10px] uppercase font-mono tracking-wider font-bold text-slate-400 block">Acceptance Legal Metas</span>
@@ -987,13 +952,12 @@ export default function App() {
                   <div className="bg-amber-500/5 p-3 rounded-lg border border-amber-500/10 space-y-2">
                     <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest block">Interactive Acceptance Action</span>
                     <p className="text-[10px] text-slate-400 leading-normal">
-                      Candidates will view a secure page where they review records, draw signatures, place acceptance coordinates, and confirm details.
+                      Candidates will view a secure page where they review records, place acceptance coordinates, and confirm details.
                     </p>
                     <button
                       type="button"
                       onClick={() => {
-                        alert("Simulated Secure Link Action!\n\nThis would normally redirect Mr. Muhammad Ibrahim to:\n" + data.acceptOfferUrl + "\n\nWe have set up the employee signature pad in the 'Signatures' tab to allow you to sign, date and accept right here!");
-                        setActiveTab('signatures');
+                        alert("Simulated Secure Link Action!\n\nThis would normally redirect " + data.recipientName + " to:\n" + data.acceptOfferUrl);
                       }}
                       className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs py-1.5 px-3 rounded-lg transition active:scale-95 flex items-center justify-center gap-1.5"
                     >
@@ -1006,26 +970,28 @@ export default function App() {
             </div>
           )}
 
-          {/* Verification Code Box / Footer Metas */}
+          {/* Footer contact (only email + website appear in the letter footer) */}
           <section className="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80 space-y-3">
-            <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 block font-bold">Document Metadata</span>
+            <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 block font-bold">Footer Contact</span>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div>
-                <label className="text-[9px] text-slate-500 block">Category Status</label>
+                <label className="text-[9px] text-slate-500 block">Email</label>
                 <input
-                  type="text"
-                  value={data.footerDocStatus}
+                  type="email"
+                  value={data.footerEmail}
                   className="bg-slate-950/80 border border-slate-800 text-slate-300 text-[11px] py-1 px-2 rounded w-full"
-                  onChange={(e) => updateField('footerDocStatus', e.target.value)}
+                  onChange={(e) => updateField('footerEmail', e.target.value)}
+                  id="input-footerEmail"
                 />
               </div>
               <div>
-                <label className="text-[9px] text-slate-500 block">Slogan quote</label>
+                <label className="text-[9px] text-slate-500 block">Website</label>
                 <input
                   type="text"
-                  value={data.footerSlogan}
-                  className="bg-slate-950/80 border border-slate-800 text-[10px] text-amber-200 py-1 px-2 rounded w-full"
-                  onChange={(e) => updateField('footerSlogan', e.target.value)}
+                  value={data.footerWebsite}
+                  className="bg-slate-950/80 border border-slate-800 text-slate-300 text-[11px] py-1 px-2 rounded w-full"
+                  onChange={(e) => updateField('footerWebsite', e.target.value)}
+                  id="input-footerWebsite"
                 />
               </div>
             </div>
