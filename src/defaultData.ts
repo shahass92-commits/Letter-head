@@ -2,6 +2,7 @@ import { AppointmentLetterData } from './types';
 
 export const initialLetterData: AppointmentLetterData = {
   companyName: "COMPASS TRAVEL & TRANSPORTATION",
+  companyTagline: "Intelligent Navigation",
   companyAddress: "Trivandrum, India",
   letterTitle: "OFFICIAL APPOINTMENT & JOINING LETTER",
   docRef: "CTT/APPT/FLEET/2026/001",
@@ -74,12 +75,12 @@ export const initialLetterData: AppointmentLetterData = {
   employeeDate: "17/06/2026",
   employeePlace: "Thiruvananthapuram",
   
-  footerEmail: "navigation@compassnai.com",
-  footerWebsite: "www.compassnai.com",
+  footerEmail: "shahas@compassnai.com, navigation@compassnai.com",
+  footerWebsite: "www.compassmobilityindia.com, www.compassnai.com",
 
   // Accept Offer Config
   showAcceptButton: true,
-  acceptOfferUrl: "https://compass-travels.in/portal/acceptOffer?ref=CTT-APPT-FLEET-2026-001",
+  acceptOfferUrl: "https://www.compassnai.com/portal/acceptOffer?ref=CTT-APPT-FLEET-2026-001",
   acceptBtnText: "Accept Appointment",
-  acceptInstructions: "To accept this selection officially, please click the secure button above to log into our internal HR system. Verify your basic information and attach high-resolution copies of your valid driving license. Alternatively, you may sign and return this official document via response mail directly to registration@compasstravels.in."
+  acceptInstructions: "To accept this selection officially, please click the secure button above to log into our internal HR system. Verify your basic information and attach high-resolution copies of your valid driving license. Alternatively, you may sign and return this official document via response mail directly to navigation@compassnai.com."
 };

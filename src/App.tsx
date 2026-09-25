@@ -559,6 +559,16 @@ export default function App() {
                 </div>
                 <div>
                   <label className="text-[10px] uppercase font-mono tracking-wider font-bold text-slate-400 block mb-1">
+                    Header Tagline
+                  </label>
+                  <input
+                    type="text"
+                    value={data.companyTagline}
+                    onChange={(e) => updateField('companyTagline', e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-800 text-slate-400 rounded-lg py-1.5 px-3 text-xs focus:outline-none mb-2"
+                    id="input-companyTagline"
+                  />
+                  <label className="text-[10px] uppercase font-mono tracking-wider font-bold text-slate-400 block mb-1">
                     Header Address
                   </label>
                   <input
@@ -975,9 +985,9 @@ export default function App() {
             <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 block font-bold">Footer Contact</span>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div>
-                <label className="text-[9px] text-slate-500 block">Email</label>
+                <label className="text-[9px] text-slate-500 block">Emails (comma-separated)</label>
                 <input
-                  type="email"
+                  type="text"
                   value={data.footerEmail}
                   className="bg-slate-950/80 border border-slate-800 text-slate-300 text-[11px] py-1 px-2 rounded w-full"
                   onChange={(e) => updateField('footerEmail', e.target.value)}
@@ -985,7 +995,7 @@ export default function App() {
                 />
               </div>
               <div>
-                <label className="text-[9px] text-slate-500 block">Website</label>
+                <label className="text-[9px] text-slate-500 block">Websites (comma-separated)</label>
                 <input
                   type="text"
                   value={data.footerWebsite}

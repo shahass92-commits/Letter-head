@@ -1,5 +1,6 @@
 export interface AppointmentLetterData {
   companyName: string;
+  companyTagline: string; // "Intelligent Navigation"
   companyAddress: string; // "Trivandrum, India"
   letterTitle: string;
   docRef: string;
@@ -53,8 +54,8 @@ export interface AppointmentLetterData {
   employeePlace: string; // "Thiruvananthapuram"
   
   // Footer contact
-  footerEmail: string;
-  footerWebsite: string;
+  footerEmail: string; // comma-separated
+  footerWebsite: string; // comma-separated
 
   // Accept Offer Config
   showAcceptButton: boolean;
