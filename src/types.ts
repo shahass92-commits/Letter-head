@@ -42,7 +42,7 @@ export interface AppointmentLetterData {
   
   // Sender Details
   senderName: string; // "SHAHAS S"
-  senderRole: string; // "Managing Partner"
+  senderRole: string; // "Proprietor"
   senderCompany: string; // "Compass Travel & Transportation"
   senderDate: string; // "17 June 2026"
   senderSignatureUrl: string; // base64 or empty string

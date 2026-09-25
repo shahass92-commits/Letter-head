@@ -856,7 +856,7 @@ export default function App() {
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs">
                   <span className="font-bold text-slate-400 uppercase tracking-widest text-[9px]">Handover Executive Signature</span>
-                  <span className="text-slate-400 font-medium">Shahas S (Managing Partner)</span>
+                  <span className="text-slate-400 font-medium">Shahas S ({data.senderRole})</span>
                 </div>
                 <SignaturePad
                   placeholderText="Shahas S Signature Pad"

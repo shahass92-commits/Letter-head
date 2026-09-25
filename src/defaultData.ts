@@ -65,7 +65,7 @@ export const initialLetterData: AppointmentLetterData = {
   closingSalutation: "FOR COMPASS TRAVEL & TRANSPORTATION",
   
   senderName: "SHAHAS S",
-  senderRole: "Managing Partner",
+  senderRole: "Proprietor",
   senderCompany: "Compass Travel & Transportation",
   senderDate: "17 June 2026",
   senderSignatureUrl: "", // Start empty
