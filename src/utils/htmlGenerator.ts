@@ -133,17 +133,9 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
     .map(para => `<p style="margin: 0 0 10px 0; font-family: ${style.fontBody}; font-size: 12px; line-height: 1.5; color: ${style.secondaryText};">${para.replace(/\n/g, '<br/>')}</p>`)
     .join('');
 
-  const signatureStyle = "max-height: 48px; width: auto; display: block; filter: multiply(1.1); margin-bottom: 2px;";
-  
-  // Custom sign-off previews (uses uploaded signature image or renders digital styling fallback gracefully)
-  const bossSignatureHtml = data.senderSignatureUrl 
-    ? `<img src="${data.senderSignatureUrl}" style="${signatureStyle}" alt="${data.senderName} Signature" />`
-    : `<div style="height: 42px; border-bottom: 1px dashed ${style.accentGold}; margin-bottom: 4px; font-family: 'Georgia', serif; font-style: italic; font-size: 18px; line-height: 44px; color: ${style.accentGold}; letter-spacing: 1px;">Shahas S</div>`;
-
-  const employeeSignatureHtml = data.employeeSignatureUrl
-    ? `<img src="${data.employeeSignatureUrl}" style="${signatureStyle}" alt="${data.employeeName} Signature" />`
-    : `<div style="height: 42px; border-bottom: 1px dashed ${style.accentGold}; margin-bottom: 4px; font-family: 'Georgia', serif; font-style: italic; font-size: 18px; line-height: 44px; color: ${style.accentGold}; letter-spacing: 1px;">${data.employeeName}</div>`;
-
+  // Minimal blue band shared by header and footer (solid fallback for clients without gradient support)
+  const bandStyle = "background-color: #0b4fb3; background-image: linear-gradient(135deg, #0a3d8f 0%, #1a6be0 100%);";
+  const appleFont = "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif";
   // Pre-calculate terms template with theme specific variables
   const termsRows = data.terms.map(term => `
     <tr>
@@ -199,19 +191,13 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
           
           <!-- CORPORATE IDENTITY BANNER -->
           <tr>
-            <td style="background-color: ${style.headerBg}; padding: 22px 28px; border-bottom: 3px solid ${style.accentGold};" class="mobile-padding">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td>
-                    <h1 style="margin: 0 0 2px 0; font-family: ${style.fontHead}; font-size: 21px; font-weight: 800; color: ${style.headerText}; letter-spacing: 0.8px; text-transform: uppercase; line-height: 1.2;">
-                      ${data.companyName}
-                    </h1>
-                    <p style="margin: 0; font-family: ${style.fontBody}; font-size: 10px; font-weight: 600; color: ${style.accentGold}; letter-spacing: 1.5px; text-transform: uppercase;">
-                      ${data.companySubName}
-                    </p>
-                  </td>
-                </tr>
-              </table>
+            <td style="${bandStyle} padding: 22px 28px; box-shadow: 0 4px 14px rgba(10, 61, 143, 0.25);" class="mobile-padding">
+              <h1 style="margin: 0 0 4px 0; font-family: ${appleFont}; font-size: 20px; font-weight: 700; color: #ffffff; letter-spacing: 0.4px; line-height: 1.2;">
+                ${data.companyName}
+              </h1>
+              <p style="margin: 0; font-family: ${appleFont}; font-size: 12px; font-weight: 500; color: #d6e4ff; letter-spacing: 0.3px;">
+                ${data.companyAddress}
+              </p>
             </td>
           </tr>
 
@@ -370,9 +356,9 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
                     <!-- Call To Action Button -->
                     <table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto 10px auto;">
                       <tr>
-                        <td align="center" style="background-color: ${style.btnBg}; border-radius: 4px; box-shadow: 0 3px 8px rgba(197, 160, 89, 0.15);" bgcolor="${style.btnBg}">
-                          <a href="${data.acceptOfferUrl}" target="_blank" class="btn-responsive" style="display: inline-block; padding: 10px 20px; font-family: ${style.fontBody}; font-size: 12px; font-weight: 800; color: ${style.btnText}; text-decoration: none; text-transform: uppercase; letter-spacing: 0.8px; border: ${style.btnBorder}; border-radius: 4px;">
-                            ${data.acceptBtnText} &rarr;
+                        <td align="center" style="background-color: #0071e3; border-radius: 980px; box-shadow: 0 4px 14px rgba(0, 113, 227, 0.3);" bgcolor="#0071e3">
+                          <a href="${data.acceptOfferUrl}" target="_blank" class="btn-responsive" style="display: inline-block; box-sizing: border-box; padding: 12px 28px; font-family: ${appleFont}; font-size: 15px; font-weight: 600; color: #ffffff; text-decoration: none; letter-spacing: -0.1px; border-radius: 980px;">
+                            ${data.acceptBtnText} &rsaquo;
                           </a>
                         </td>
                       </tr>
@@ -417,7 +403,7 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
                 </tr>
               </table>
 
-              <!-- DUAL SIGNATURE PLACEMENT (Employer & Employee) -->
+              <!-- SIGN-OFF (Employer & Employee) -->
               <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 18px;">
                 <tr>
                   <!-- Employer Signing Block -->
@@ -425,14 +411,6 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
                     <p style="margin: 0 0 6px 0; font-family: ${style.fontBody}; font-size: 10px; font-weight: 700; color: ${style.accentGold}; letter-spacing: 0.5px; text-transform: uppercase;">
                       ${data.closingSalutation}
                     </p>
-                    
-                    <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 8px;">
-                      <tr>
-                        <td align="left" style="height: 48px; vertical-align: bottom;">
-                          ${bossSignatureHtml}
-                        </td>
-                      </tr>
-                    </table>
 
                     <p style="margin: 0; font-family: ${style.fontHead}; font-size: 13px; font-weight: 700; color: ${style.primaryText};">
                       ${data.senderName}
@@ -456,20 +434,12 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
                     <p style="margin: 0 0 6px 0; font-family: ${style.fontBody}; font-size: 10px; font-weight: 700; color: ${style.accentGold}; letter-spacing: 0.5px; text-transform: uppercase;">
                       EMPLOYEE ACCEPTANCE RECORD
                     </p>
-                    
-                    <table border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 8px;">
-                      <tr>
-                        <td align="left" style="height: 48px; vertical-align: bottom;">
-                          ${employeeSignatureHtml}
-                        </td>
-                      </tr>
-                    </table>
 
                     <p style="margin: 0; font-family: ${style.fontHead}; font-size: 13px; font-weight: 700; color: ${style.primaryText};">
                       ${data.employeeName}
                     </p>
                     <p style="margin: 0; font-family: ${style.fontBody}; font-size: 11px; font-weight: 600; color: ${style.mutedText}; text-transform: uppercase;">
-                      Employee Signature
+                      Employee
                     </p>
                     <p style="margin: 0; font-family: ${style.fontBody}; font-size: 11px; color: ${style.mutedText};">
                       Place: <b style="color: ${style.primaryText};">${data.employeePlace}</b>
@@ -495,40 +465,14 @@ export function generateMailBodyHtml(data: AppointmentLetterData, theme: ThemeVa
             </td>
           </tr>
 
-          <!-- Thin bottom golden border separator -->
+          <!-- CONTACT FOOTER -->
           <tr>
-            <td height="3" style="background-color: ${style.accentGold}; line-height: 3px; font-size: 3px;">&nbsp;</td>
-          </tr>
-
-          <!-- CORPORATE COGNIZANCE FOOTER -->
-          <tr>
-            <td style="background-color: ${style.headerBg}; padding: 18px 24px; text-align: center;" class="mobile-padding">
-              <p style="margin: 0 0 3px 0; font-family: ${style.fontHead}; font-size: 11px; font-weight: 700; color: ${style.headerText}; letter-spacing: 1px; text-transform: uppercase;">
-                ${data.companyName}
+            <td style="${bandStyle} padding: 14px 24px; text-align: center; box-shadow: 0 -4px 14px rgba(10, 61, 143, 0.2);" align="center" class="mobile-padding">
+              <p style="margin: 0; font-family: ${appleFont}; font-size: 12px; font-weight: 500; color: #d6e4ff; letter-spacing: 0.2px;">
+                <a href="mailto:${data.footerEmail}" style="color: #ffffff; text-decoration: none;">${data.footerEmail}</a>
+                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+                <a href="https://${data.footerWebsite.replace(/^https?:\/\//, '')}" target="_blank" style="color: #ffffff; text-decoration: none;">${data.footerWebsite}</a>
               </p>
-              <p style="margin: 0 0 6px 0; font-family: ${style.fontBody}; font-size: 9px; color: ${style.mutedText}; letter-spacing: 0.5px;">
-                ${data.footerTagline}
-              </p>
-              <p style="margin: 0 0 12px 0; font-family: 'Georgia', serif; font-style: italic; font-size: 11px; color: ${style.accentGold};">
-                ${data.footerSlogan}
-              </p>
-              
-              <!-- Footer Document Meta Codes -->
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-top: 1px solid ${style.borderColSub}; padding-top: 10px;">
-                <tr>
-                  <td align="left" style="width: 50%;">
-                    <p style="margin: 0; font-family: ${style.fontBody}; font-size: 8.5px; text-transform: uppercase; color: ${style.mutedText}; letter-spacing: 0.5px;">
-                      REF: <b style="color: ${style.secondaryText};">${data.docRef}</b>
-                    </p>
-                  </td>
-                  <td align="right" style="width: 50%; text-align: right;">
-                    <p style="margin: 0; font-family: ${style.fontBody}; font-size: 8.5px; text-transform: uppercase; color: ${style.mutedText}; letter-spacing: 0.5px;">
-                      STATUS: <b style="color: ${style.accentGold};">${data.footerDocStatus}</b>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
             </td>
           </tr>
 
